@@ -19,7 +19,7 @@
     "index.js"
   ],
   "dependencies": {
-    "postcss": "^6.0.1"
+    "postcss": "^7.0.2"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
