@@ -1,5 +1,9 @@
 # Changes to PostCSS Custom Media
 
+### 7.0.5 (October 5, 2018)
+
+- Updated: `postcss` to 7.0.5
+
 ### 7.0.4 (September 23, 2018)
 
 - Added: `importFromPlugins` option to process imports
