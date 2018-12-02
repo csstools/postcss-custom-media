@@ -116,8 +116,8 @@ module.exports = {
 		'basic:export-fn': {
 			message: 'supports { exportTo() } usage',
 			options: {
-				exportTo(customMedia) {
-					if (customMedia['--mq-a'] !== '(max-width: 30em), (max-height: 30em)') {
+				exportTo(custom) {
+					if (custom.customMedia['--mq-a'] !== '(max-width: 30em), (max-height: 30em)') {
 						throw new Error('The exportTo function failed');
 					}
 				}
@@ -128,9 +128,9 @@ module.exports = {
 		'basic:export-fn-promise': {
 			message: 'supports { async exportTo() } usage',
 			options: {
-				exportTo(customMedia) {
+				exportTo(custom) {
 					return new Promise((resolve, reject) => {
-						if (customMedia['--mq-a'] !== '(max-width: 30em), (max-height: 30em)') {
+						if (custom.customMedia['--mq-a'] !== '(max-width: 30em), (max-height: 30em)') {
 							reject('The exportTo function failed');
 						} else {
 							resolve();

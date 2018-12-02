@@ -10,11 +10,13 @@
   "repository": "postcss/postcss-custom-media",
   "homepage": "https://github.com/postcss/postcss-custom-media#readme",
   "bugs": "https://github.com/postcss/postcss-custom-media/issues",
-  "main": "index.cjs.js",
-  "module": "index.es.mjs",
+  "main": "index.js",
+  "module": "index.mjs",
   "files": [
-    "index.cjs.js",
-    "index.es.mjs"
+    "index.js",
+    "index.js.map",
+    "index.mjs",
+    "index.mjs.map"
   ],
   "scripts": {
     "prepublishOnly": "npm test",
