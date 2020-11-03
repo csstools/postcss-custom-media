@@ -69,3 +69,15 @@
 		order: 8;
 	}
 }
+
+@media (max-width: 30em),(max-height: 30em) {
+	body {
+		order: 1;
+	}
+}
+
+@media (max-width: 30em),(max-height: 30em), (max-width: 30em), (max-height: 30em) {
+	body {
+		order: 1;
+	}
+}

@@ -81,3 +81,15 @@
 		order: 8;
 	}
 }
+
+@media ( --mq-a ) {
+	body {
+		order: 1;
+	}
+}
+
+@media ( --mq-a ), ( --mq-a ) {
+	body {
+		order: 1;
+	}
+}
