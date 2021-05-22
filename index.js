@@ -1,7 +1,7 @@
 import getCustomMediaFromRoot from './lib/custom-media-from-root';
 import getCustomMediaFromImports from './lib/get-custom-media-from-imports';
-import writeCustomMediaToExports from './lib/write-custom-media-to-exports';
 import transformAtrules from './lib/transform-atrules';
+import writeCustomMediaToExports from './lib/write-custom-media-to-exports';
 
 const creator = opts => {
 	// whether to preserve custom media and at-rules using them
