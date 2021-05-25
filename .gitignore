@@ -1,11 +1,18 @@
-node_modules
-index.*.*
-package-lock.json
-*.log*
-*.result.css
+# OS
 .*
+*.log*
+
+# NodeJS
+node_modules
+package-lock.json
+yarn.lock
+
+# Package
+/test/*.result.css
+/postcss-custom-media.cjs
+/postcss-custom-media.mjs
+!.bin
 !.editorconfig
 !.gitignore
-!.rollup.js
 !.tape.js
 !.travis.yml

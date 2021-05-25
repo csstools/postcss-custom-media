@@ -1,34 +1,34 @@
 // return transformed medias, replacing custom pseudo medias with custom medias
-export default function transformMediaList(mediaList, customMedias) {
-	let index = mediaList.nodes.length - 1;
+export const getTransformedMediaList = (mediaList, customMedias) => {
+	let index = mediaList.nodes.length - 1
 
 	while (index >= 0) {
-		const transformedMedias = transformMedia(mediaList.nodes[index], customMedias);
+		const transformedMedias = transformMedia(mediaList.nodes[index], customMedias)
 
 		if (transformedMedias.length) {
-			mediaList.nodes.splice(index, 1, ...transformedMedias);
+			mediaList.nodes.splice(index, 1, ...transformedMedias)
 		}
 
-		--index;
+		--index
 	}
 
-	return mediaList;
+	return mediaList
 }
 
 // return custom pseudo medias replaced with custom medias
 function transformMedia(media, customMedias) {
-	const transpiledMedias = [];
+	const transpiledMedias = []
 
 	for (const index in media.nodes) {
-		const { value, nodes } = media.nodes[index];
-		const key = value.replace(customPseudoRegExp, '$1');
+		const { value, nodes } = media.nodes[index]
+		const key = value.replace(customPseudoRegExp, '$1')
 
 		if (key in customMedias) {
 			for (const replacementMedia of customMedias[key].nodes) {
 				// use the first available modifier unless they cancel each other out
 				const modifier = media.modifier !== replacementMedia.modifier
 					? media.modifier || replacementMedia.modifier
-				: '';
+				: ''
 				const mediaClone = media.clone({
 					modifier,
 					// conditionally use the raws from the first available modifier
@@ -36,7 +36,7 @@ function transformMedia(media, customMedias) {
 						? { ...media.raws }
 					: { ...replacementMedia.raws },
 					type: media.type || replacementMedia.type,
-				});
+				})
 
 				// conditionally include more replacement raws when the type is present
 				if (mediaClone.type === replacementMedia.type) {
@@ -44,46 +44,46 @@ function transformMedia(media, customMedias) {
 						and: replacementMedia.raws.and,
 						beforeAnd: replacementMedia.raws.beforeAnd,
 						beforeExpression: replacementMedia.raws.beforeExpression
-					});
+					})
 				}
 
 				mediaClone.nodes.splice(index, 1, ...replacementMedia.clone().nodes.map(node => {
 					// use raws and spacing from the current usage
 					if (media.nodes[index].raws.and) {
-						node.raws = { ...media.nodes[index].raws };
+						node.raws = { ...media.nodes[index].raws }
 					}
 
-					node.spaces = { ...media.nodes[index].spaces };
+					node.spaces = { ...media.nodes[index].spaces }
 
-					return node;
-				}));
+					return node
+				}))
 
 				// remove the currently transformed key to prevent recursion
-				const nextCustomMedia = getCustomMediasWithoutKey(customMedias, key);
-				const retranspiledMedias = transformMedia(mediaClone, nextCustomMedia);
+				const nextCustomMedia = getCustomMediasWithoutKey(customMedias, key)
+				const retranspiledMedias = transformMedia(mediaClone, nextCustomMedia)
 
 				if (retranspiledMedias.length) {
-					transpiledMedias.push(...retranspiledMedias);
+					transpiledMedias.push(...retranspiledMedias)
 				} else {
-					transpiledMedias.push(mediaClone);
+					transpiledMedias.push(mediaClone)
 				}
 			}
 
-			return transpiledMedias;
+			return transpiledMedias
 		} else if (nodes && nodes.length) {
-			transformMediaList(media.nodes[index], customMedias);
+			getTransformedMediaList(media.nodes[index], customMedias)
 		}
 	}
 
-	return transpiledMedias;
+	return transpiledMedias
 }
 
-const customPseudoRegExp = /\((--[A-z][\w-]*)\)/;
+const customPseudoRegExp = /\((--[A-z][\w-]*)\)/
 
 const getCustomMediasWithoutKey = (customMedias, key) => {
-	const nextCustomMedias = Object.assign({}, customMedias);
+	const nextCustomMedias = Object.assign({}, customMedias)
 
-	delete nextCustomMedias[key];
+	delete nextCustomMedias[key]
 
-	return nextCustomMedias;
-};
+	return nextCustomMedias
+}

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	'basic': {
 		message: 'supports basic usage'
 	},
