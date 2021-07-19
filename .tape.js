@@ -235,5 +235,8 @@ module.exports = {
 				throw new Error('The original file did not match the freshly exported copy');
 			}
 		}
-	}
+	},
+	'whitespace': {
+		message: 'supports whitespace'
+	},
 };

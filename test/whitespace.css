@@ -1,0 +1,109 @@
+@custom-media --mq-a (max-width: 30em), (max-height: 30em);
+
+@media ( --mq-a) {
+	body {
+		order: 1;
+	}
+}
+
+@media (--mq-a ) {
+	body {
+		order: 1;
+	}
+}
+
+@media ( --mq-a ) {
+	body {
+		order: 1;
+	}
+}
+
+@media (   --mq-a   ) {
+	body {
+		order: 1;
+	}
+}
+
+@media ( --mq-a), (--mq-a) {
+	body {
+		order: 2;
+	}
+}
+
+@media (--mq-a), ( --mq-a) {
+	body {
+		order: 2;
+	}
+}
+
+@media ( --mq-a), ( --mq-a) {
+	body {
+		order: 2;
+	}
+}
+
+@media (--mq-a ), (--mq-a) {
+	body {
+		order: 2;
+	}
+}
+
+@media (--mq-a), (--mq-a ) {
+	body {
+		order: 2;
+	}
+}
+
+@media (--mq-a ), (--mq-a ) {
+	body {
+		order: 2;
+	}
+}
+
+@media ( --mq-a), (--mq-a ) {
+	body {
+		order: 2;
+	}
+}
+
+@media (--mq-a ), ( --mq-a) {
+	body {
+		order: 2;
+	}
+}
+
+@media ( --mq-a ), ( --mq-a ) {
+	body {
+		order: 2;
+	}
+}
+
+@media (   --mq-a   ), (   --mq-a   ) {
+	body {
+		order: 2;
+	}
+}
+
+@media not all and ( --mq-a) {
+	body {
+		order: 3;
+	}
+}
+
+@media not all and (--mq-a ) {
+	body {
+		order: 3;
+	}
+}
+
+@media not all and ( --mq-a ) {
+	body {
+		order: 3;
+	}
+}
+
+@media not all and (   --mq-a   ) {
+	body {
+		order: 3;
+	}
+}
