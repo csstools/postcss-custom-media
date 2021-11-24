@@ -1,10 +1,9 @@
-import postcss from 'postcss';
 import getCustomMediaFromRoot from './lib/custom-media-from-root';
 import getCustomMediaFromImports from './lib/get-custom-media-from-imports';
 import transformAtrules from './lib/transform-atrules';
 import writeCustomMediaToExports from './lib/write-custom-media-to-exports';
 
-export default postcss.plugin('postcss-custom-media', opts => {
+const creator = opts => {
 	// whether to preserve custom media and at-rules using them
 	const preserve = 'preserve' in Object(opts) ? Boolean(opts.preserve) : false;
 
@@ -15,16 +14,28 @@ export default postcss.plugin('postcss-custom-media', opts => {
 	const exportTo = [].concat(Object(opts).exportTo || []);
 
 	// promise any custom media are imported
-	const customMediaPromise = getCustomMediaFromImports(importFrom);
+	const customMediaImportsPromise = getCustomMediaFromImports(importFrom);
 
-	return async root => {
-		const customMedia = Object.assign(
-			await customMediaPromise,
-			getCustomMediaFromRoot(root, { preserve })
-		);
+	return {
+		postcssPlugin: 'postcss-custom-media',
+		Once: async (root, helpers) => {
 
-		await writeCustomMediaToExports(customMedia, exportTo);
+			// combine rules from root and from imports
+			helpers.customMedia = Object.assign(
+				await customMediaImportsPromise,
+				getCustomMediaFromRoot(root, { preserve })
+			);
 
-		transformAtrules(root, customMedia, { preserve });
-	};
-});
+			await writeCustomMediaToExports(helpers.customMedia, exportTo);
+		},
+		AtRule: {
+			media: (atrule, helpers) => {
+				transformAtrules(atrule, {preserve}, helpers)
+			}
+		}
+	}
+}
+
+creator.postcss = true
+
+export default creator
