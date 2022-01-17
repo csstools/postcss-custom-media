@@ -1,5 +1,9 @@
 # Changes to PostCSS Custom Media
 
+### 8.0.1 (January 17, 2022)
+
+- Fixed: Issue with using PostCSS v8 events
+
 ### 8.0.0 (January 12, 2021)
 
 - Added: Support for PostCSS v8
