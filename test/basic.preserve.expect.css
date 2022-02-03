@@ -172,7 +172,19 @@
 	}
 }
 
-@media ( --mq-a ), ( --mq-a ) {
+@media ( --mq-a ), (   --mq-a    ) {
+	body {
+		order: 1;
+	}
+}
+
+@media (max-width: 30em),(max-height: 30em), (max-width: 30em), (max-height: 30em) {
+	body {
+		order: 1;
+	}
+}
+
+@media ( --mq-a   ), (   --mq-a           ) {
 	body {
 		order: 1;
 	}
